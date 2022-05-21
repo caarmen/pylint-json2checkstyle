@@ -35,10 +35,27 @@ def _create_checkstyle_report(messages: List[Message]) -> str:
             error.setAttribute("column", str(msg.column))
             error.setAttribute("message", msg.msg)
             error.setAttribute("source", f"{msg.msg_id}:{msg.symbol}")
-            error.setAttribute("severity", msg.category)
+            error.setAttribute("severity", _map_severity(msg.category))
             file.appendChild(error)
             checkstyle.appendChild(file)
     return root.toprettyxml(indent="  ")
+
+
+def _map_severity(pylint_category: str) -> str:
+    """
+    Return a checkstyle severity level based on the pylint category
+    Pylint categories:
+    https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html#evaluation
+    Checkstyle severity levels:
+    https://checkstyle.sourceforge.io/property_types.html#SeverityLevel
+    """
+    if pylint_category in ["fatal", "error"]:
+        return "error"
+    if pylint_category in ["warning", "refactor"]:
+        return "warning"
+    if pylint_category in ["convention", "info"]:
+        return "info"
+    return "info"
 
 
 def json2checkstyle(json_input: str) -> str:
