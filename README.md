@@ -7,7 +7,7 @@ This project is partially inspired from the [pylint-json2html](https://github.co
 ## Usage:
 ### As a command line tool
 ```
-usage: pylint_json2checkstyle [-h] [-o checkstyle_output_file] [json_input_file]
+usage: pylint-json2checkstyle [-h] [-o checkstyle_output_file] [json_input_file]
 
 Convert pylint json report to checkstyle
 
