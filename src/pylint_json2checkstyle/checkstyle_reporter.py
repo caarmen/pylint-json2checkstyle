@@ -5,20 +5,18 @@ import argparse
 import json
 import sys
 from itertools import groupby
-from typing import TYPE_CHECKING, Optional
+from typing import Optional, List
 from xml.dom import minidom
 
 from pylint.interfaces import IReporter
+from pylint.lint.pylinter import PyLinter
 from pylint.message import Message
 from pylint.reporters.base_reporter import BaseReporter
+from pylint.reporters.ureports.nodes import Section
 from pylint.typing import MessageLocationTuple
 
-if TYPE_CHECKING:
-    from pylint.lint.pylinter import PyLinter
-    from pylint.reporters.ureports.nodes import Section
 
-
-def _create_checkstyle_report(messages: list[Message]) -> str:
+def _create_checkstyle_report(messages: List[Message]) -> str:
     root = minidom.Document()
     checkstyle = root.createElement('checkstyle')
     root.appendChild(checkstyle)
@@ -54,12 +52,12 @@ class CheckstyleReporter(BaseReporter):
     def _display(self, layout) -> None:
         pass
 
-    def display_messages(self, layout: Optional["Section"]) -> None:
+    def display_messages(self, layout: Optional[Section]) -> None:
         checkstyle_report = _create_checkstyle_report(self.messages)
         print(checkstyle_report)
 
 
-def register(linter: "PyLinter") -> None:
+def register(linter: PyLinter) -> None:
     """
     Register our reporter as a plugin for pylint
     """
@@ -102,7 +100,7 @@ def main():
                 abspath=item["path"],
                 path=item["path"],
                 module=item["module"],
-                obj=None,
+                obj="",
                 line=item["line"],
                 column=item["column"]),
             msg=item["message"],
