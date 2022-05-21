@@ -41,6 +41,28 @@ def _create_checkstyle_report(messages: List[Message]) -> str:
     return root.toprettyxml(indent="  ")
 
 
+def json2checkstyle(json_input: str) -> str:
+    """
+    Convert a json pylint report to checkstyle format
+    """
+    input_report = json.loads(json_input)
+    messages = [
+        Message(
+            msg_id=item["message-id"],
+            symbol=item["symbol"],
+            location=MessageLocationTuple(
+                abspath=item["path"],
+                path=item["path"],
+                module=item["module"],
+                obj="",
+                line=item["line"],
+                column=item["column"]),
+            msg=item["message"],
+            confidence=None
+        ) for item in input_report]
+    return _create_checkstyle_report(messages)
+
+
 class CheckstyleReporter(BaseReporter):
     """
     Outputs pylint errors in checkstyle format
@@ -91,22 +113,8 @@ def main():
     json_input_file = options.input
     checkstyle_output_file = options.output
     with json_input_file:
-        input_report = json.load(json_input_file)
-    messages = [
-        Message(
-            msg_id=item["message-id"],
-            symbol=item["symbol"],
-            location=MessageLocationTuple(
-                abspath=item["path"],
-                path=item["path"],
-                module=item["module"],
-                obj="",
-                line=item["line"],
-                column=item["column"]),
-            msg=item["message"],
-            confidence=None
-        ) for item in input_report]
-    checkstyle_report = _create_checkstyle_report(messages)
+        input_report = json_input_file.read()
+    checkstyle_report = json2checkstyle(input_report)
     with checkstyle_output_file:
         if 'b' in checkstyle_output_file.mode:
             checkstyle_output_file.write(checkstyle_report.encode("utf-8"))
