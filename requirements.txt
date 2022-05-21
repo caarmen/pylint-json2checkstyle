@@ -1,3 +1,4 @@
 pylint==2.13.9
 typing_extensions==4.2.0
+twine==4.0.0
 
