@@ -85,13 +85,13 @@ class TestClass:
         expected_checkstyle_output = """<?xml version="1.0" ?>
 <checkstyle>
   <file name="myproject/apps/myapp/service.py">
-    <error column="4" line="49" message="Disallowed name &quot;foo&quot;" severity="convention" source="C0104:disallowed-name"/>
+    <error column="4" line="49" message="Disallowed name &quot;foo&quot;" severity="info" source="C0104:disallowed-name"/>
     <error column="4" line="49" message="Unused variable 'foo'" severity="warning" source="W0612:unused-variable"/>
   </file>
   <file name="myproject/apps/myapp/views.py">
-    <error column="0" line="1" message="Missing module docstring" severity="convention" source="C0114:missing-module-docstring"/>
+    <error column="0" line="1" message="Missing module docstring" severity="info" source="C0114:missing-module-docstring"/>
     <error column="31" line="64" message="Unused argument 'request'" severity="warning" source="W0613:unused-argument"/>
-    <error column="4" line="64" message="Method could be a function" severity="refactor" source="R0201:no-self-use"/>
+    <error column="4" line="64" message="Method could be a function" severity="warning" source="R0201:no-self-use"/>
   </file>
 </checkstyle>
 """
