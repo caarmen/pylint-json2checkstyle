@@ -4,10 +4,13 @@ A Pylint plugin and command line tool to produce Pylint reports in checkstyle fo
 
 This project is partially inspired from the [pylint-json2html](https://github.com/Exirel/pylint-json2html) project.
 
+[![GitHub license][license-image]][license-url]
 [![GitHub-Actions][gh-image]][gh-url]
 [![pyversion][pyversion-image]][pyversion-url]
 [![pypi][pypi-image]][pypi-url]
 
+[license-image]: https://img.shields.io/badge/license-MIT-lightgrey.svg?maxAge=2592000
+[license-url]: https://raw.githubusercontent.com/caarmen/pylint-json2checkstyle/main/LICENSE
 [gh-image]: https://github.com/caarmen/pylint-json2checkstyle/actions/workflows/tests.yml/badge.svg
 [gh-url]: https://github.com/caarmen/pylint-json2checkstyle/actions?query=workflow%3A%22Run+tests%22++
 [pyversion-image]: https://img.shields.io/pypi/pyversions/pylint-json2checkstyle
