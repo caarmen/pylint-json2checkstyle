@@ -4,6 +4,17 @@ A Pylint plugin and command line tool to produce Pylint reports in checkstyle fo
 
 This project is partially inspired from the [pylint-json2html](https://github.com/Exirel/pylint-json2html) project.
 
+[![pyversion][pyversion-image]][pyversion-url]
+[![pypi][pypi-image]][pypi-url]
+
+
+[pyversion-image]: https://img.shields.io/pypi/pyversions/pylint-json2checkstyle
+[pyversion-url]: https://pypi.org/project/pylint-json2checkstyle/
+[pypi-image]: https://img.shields.io/pypi/v/pylint-json2checkstyle.svg?style=flat
+[pypi-url]: https://pypi.org/project/pylint-json2checkstyle/
+
+
+
 ## Usage:
 ### As a command line tool
 ```
