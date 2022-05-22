@@ -1,6 +1,8 @@
 """
 Tests for json2checkstyle
 """
+from xml.dom import minidom
+
 from pylint_json2checkstyle.checkstyle_reporter import json2checkstyle
 
 
@@ -85,16 +87,18 @@ class TestClass:
         expected_checkstyle_output = """<?xml version="1.0" ?>
 <checkstyle>
   <file name="myproject/apps/myapp/service.py">
-    <error column="4" line="49" message="Disallowed name &quot;foo&quot;" severity="info" source="C0104:disallowed-name"/>
-    <error column="4" line="49" message="Unused variable 'foo'" severity="warning" source="W0612:unused-variable"/>
+    <error line="49" column="4" message="Disallowed name &quot;foo&quot;" source="C0104:disallowed-name" severity="info"/>
+    <error line="49" column="4" message="Unused variable 'foo'" source="W0612:unused-variable" severity="warning"/>
   </file>
   <file name="myproject/apps/myapp/views.py">
-    <error column="0" line="1" message="Missing module docstring" severity="info" source="C0114:missing-module-docstring"/>
-    <error column="31" line="64" message="Unused argument 'request'" severity="warning" source="W0613:unused-argument"/>
-    <error column="4" line="64" message="Method could be a function" severity="warning" source="R0201:no-self-use"/>
+    <error line="1" column="0" message="Missing module docstring" source="C0114:missing-module-docstring" severity="info"/>
+    <error line="64" column="31" message="Unused argument 'request'" source="W0613:unused-argument" severity="warning"/>
+    <error line="64" column="4" message="Method could be a function" source="R0201:no-self-use" severity="warning"/>
   </file>
 </checkstyle>
 """
 
         actual_checkstyle_output = json2checkstyle(json_input)
-        assert actual_checkstyle_output == expected_checkstyle_output
+        expected_checkstyle_document = minidom.parseString(expected_checkstyle_output)
+        actual_checkstyle_document = minidom.parseString(actual_checkstyle_output)
+        assert actual_checkstyle_document.toprettyxml() == expected_checkstyle_document.toprettyxml()
