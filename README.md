@@ -11,8 +11,8 @@ This project is partially inspired from the [pylint-json2html](https://github.co
 
 [license-image]: https://img.shields.io/badge/license-MIT-lightgrey.svg?maxAge=2592000
 [license-url]: https://raw.githubusercontent.com/caarmen/pylint-json2checkstyle/main/LICENSE
-[gh-image]: https://github.com/caarmen/pylint-json2checkstyle/actions/workflows/tests.yml/badge.svg
-[gh-url]: https://github.com/caarmen/pylint-json2checkstyle/actions?query=workflow%3A%22Run+tests%22++
+[gh-image]: https://img.shields.io/github/actions/workflow/status/caarmen/pylint-json2checkstyle/tests.yml?branch=main
+[gh-url]: https://github.com/caarmen/pylint-json2checkstyle/actions/workflows/tests.yml?query=branch%3Amain
 [pyversion-image]: https://img.shields.io/pypi/pyversions/pylint-json2checkstyle
 [pyversion-url]: https://pypi.org/project/pylint-json2checkstyle/
 [pypi-image]: https://img.shields.io/pypi/v/pylint-json2checkstyle.svg?style=flat
