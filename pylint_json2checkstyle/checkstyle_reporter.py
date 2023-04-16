@@ -20,16 +20,16 @@ def _create_checkstyle_report(messages: List[Message]) -> str:
     root = minidom.Document()
     checkstyle = root.createElement('checkstyle')
     root.appendChild(checkstyle)
-    messages_by_file = {abspath: list(messages)
-                        for abspath, messages in
+    messages_by_file = {path: list(messages)
+                        for path, messages in
                         (groupby(
-                            sorted(messages, key=lambda x: x.abspath),
-                            lambda x: x.abspath)
+                            sorted(messages, key=lambda x: x.path),
+                            lambda x: x.path)
                         )}
-    for abspath in messages_by_file:
+    for path in messages_by_file:
         file = root.createElement("file")
-        file.setAttribute("name", abspath)
-        for msg in messages_by_file[abspath]:
+        file.setAttribute("name", path)
+        for msg in messages_by_file[path]:
             error = root.createElement("error")
             error.setAttribute("line", str(msg.line))
             error.setAttribute("column", str(msg.column))
