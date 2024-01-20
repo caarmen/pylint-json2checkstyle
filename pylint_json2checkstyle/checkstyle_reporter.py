@@ -8,7 +8,6 @@ from itertools import groupby
 from typing import Optional, List
 from xml.dom import minidom
 
-from pylint.interfaces import IReporter
 from pylint.lint.pylinter import PyLinter
 from pylint.message import Message
 from pylint.reporters.base_reporter import BaseReporter
@@ -84,7 +83,6 @@ class CheckstyleReporter(BaseReporter):
     """
     Outputs pylint errors in checkstyle format
     """
-    __implements__ = IReporter
     name = "checkstyle"
     extension = "xml"
 
